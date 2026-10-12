@@ -102,6 +102,7 @@ footer a{color:var(--sea);font-weight:700}
     <figure><img src="photos/surf1.jpg" alt="Surf lesson on Legian Beach" onerror="this.remove()"></figure>
     <figure><img src="photos/surf2.jpg" alt="Coach and student" onerror="this.remove()"></figure>
     <figure><img src="photos/surf3.jpg" alt="Sunset surf" onerror="this.remove()"></figure>
+    <figure><img src="photos/surf4.jpg" alt="Sunset surf" onerror="this.remove()"></figure>
   </div></section>
 
 <section><h2 data-t="lessH"></h2><div class="grid" id="gL"></div></section>
