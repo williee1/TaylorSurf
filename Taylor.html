@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legian Surf Camp</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f8f8;--ink:#0d2b36;--muted:#4b6670;--sea:#0f7f8f;--sun:#f5c343;--card:#fff;--line:#cfe0e3}
+@media(prefers-color-scheme:dark){:root{--bg:#081c24;--ink:#e8f4f5;--muted:#9bb6bd;--sea:#3cc0d1;--card:#0f2a35;--line:#1d4250}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 "DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",sans-serif;line-height:1.05;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+nav b{font:800 20px "Bricolage Grotesque",sans-serif}
+.lang button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 11px;border-radius:8px;cursor:pointer;font:500 14px "DM Sans"}
+.lang button[aria-pressed=true]{background:var(--sea);color:#fff;border-color:var(--sea)}
+.notice{background:var(--sun);color:#1b1500;padding:10px 14px;border-radius:10px;font-weight:700;margin-bottom:10px}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:start;padding:20px 0 40px}
+.hero h1{font-size:clamp(38px,6.5vw,72px);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--muted);max-width:46ch;margin:16px 0 20px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:15px}
+.book{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 12px 40px -20px rgba(10,60,70,.45)}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 5px}
+select,input{width:100%;font:400 16px "DM Sans";padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:18px 0 4px;padding-top:14px;border-top:1px dashed var(--line)}
+.total strong{font:800 28px "Bricolage Grotesque"}
+.note{color:var(--muted);font-size:14px;margin:0 0 10px}
+.btn{display:block;width:100%;border:0;text-align:center;text-decoration:none;font:700 17px "DM Sans";padding:14px;border-radius:12px;cursor:pointer;margin-top:8px}
+.go{background:var(--sun);color:#1b1500}.wa{background:#1fa855;color:#fff}
+.err{color:#c0392b;font-size:14px;min-height:20px;margin:6px 0 0}
+.done{display:none}.done h3{font-size:28px;margin-bottom:8px}
+.done dl{margin:12px 0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px}.done dt{color:var(--muted)}.done dd{margin:0;font-weight:500}
+.link{background:none;border:0;color:var(--sea);font:500 15px "DM Sans";margin-top:10px;cursor:pointer;padding:0}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(28px,4vw,38px);margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.item h3{font-size:21px;margin-bottom:6px}.item p{margin:0 0 10px;color:var(--muted);font-size:15px}
+.price{font-weight:700;color:var(--sea)}
+.photos{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+.photos figure{margin:0;border-radius:14px;overflow:hidden;min-height:200px;background:linear-gradient(160deg,#48b6c4,#0a5f6c 70%,#f5c343 130%);position:relative}
+.photos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rate{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.rate b{font:800 44px "Bricolage Grotesque"}.stars{color:#f5a623;font-size:22px;letter-spacing:2px}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.rev p{margin:6px 0 8px;font-size:15px}.rev small{color:var(--muted)}
+.gbtn{display:inline-block;margin-top:14px;color:var(--sea);font-weight:700}
+footer{padding:30px 0 44px;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+footer a{color:var(--sea);font-weight:700}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.photos{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b>Legian Surf Camp</b>
+<div class="lang"><button data-l="en">EN</button> <button data-l="fr">FR</button> <button data-l="id">ID</button></div></nav>
+<div class="notice" id="notice" hidden></div>
+
+<header class="hero">
+  <div>
+    <h1 data-t="h1"></h1><p data-t="sub"></p>
+    <ul class="facts"><li data-t="f1"></li><li data-t="f2"></li><li data-t="f3"></li></ul>
+  </div>
+  <div class="book">
+    <div id="formView">
+      <label for="item" data-t="lbl"></label><select id="item"></select>
+      <div class="row">
+        <div><label for="date" data-t="date"></label><input type="date" id="date"></div>
+        <div><label for="time" data-t="time"></label><select id="time"></select></div>
+      </div>
+      <div class="row">
+        <div><label for="qty" data-t="ppl"></label><input type="number" id="qty" min="1" max="10" value="1"></div>
+        <div><label for="name" data-t="name"></label><input id="name" autocomplete="name"></div>
+      </div>
+      <label for="phone" data-t="phone"></label><input id="phone" type="tel" autocomplete="tel">
+      <div class="total"><span data-t="total"></span><strong id="total"></strong></div>
+      <p class="note" data-t="payNote"></p>
+      <button class="btn go" id="submit" data-t="submit"></button>
+      <p class="err" id="err" role="alert"></p>
+    </div>
+    <div class="done" id="doneView">
+      <h3 data-t="doneH"></h3><p data-t="doneP"></p><dl id="sum"></dl>
+      <a class="btn wa" id="wa" target="_blank" rel="noopener" data-t="wa"></a>
+      <button class="link" id="again" data-t="again"></button>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="rate"><b id="ratingNum">4.9</b><div><div class="stars" aria-hidden="true">★★★★★</div><small data-t="rateTxt"></small></div></div>
+  <div class="grid" id="revs"></div>
+  <a class="gbtn" id="gLink" target="_blank" rel="noopener" data-t="gAll"></a>
+</section>
+
+<section><h2 data-t="galH"></h2>
+  <div class="photos">
+    <figure><img src="photos/surf1.jpg" alt="Surf lesson on Legian Beach" onerror="this.remove()"></figure>
+    <figure><img src="photos/surf2.jpg" alt="Coach and student" onerror="this.remove()"></figure>
+    <figure><img src="photos/surf3.jpg" alt="Sunset surf" onerror="this.remove()"></figure>
+  </div></section>
+
+<section><h2 data-t="lessH"></h2><div class="grid" id="gL"></div></section>
+<footer><span data-t="foot"></span> <a id="mapLink" target="_blank" rel="noopener" data-t="mapBtn"></a></footer>
+</div>
+
+<script>
+/* ===== SETTINGS ===== */
+var CFG={
+ SHEET_URL:"" // paste your Google Apps Script Web App URL here (see google-apps-script.gs)
+};
+var S={wa:"6282147247800",maps:"https://share.google/3jdK5qG8696ZkziJq",rating:"4.9",notice:"",times:"07:00,09:00,15:30"};
+var LES=[
+ {n:{en:"Group lesson",fr:"Cours en groupe",id:"Les grup"},d:{en:"2 hours: safety, paddling and your first waves.",fr:"2 h : sécurité, ramer et vos premières vagues.",id:"2 jam: keselamatan, mendayung dan ombak pertama."},p:200000},
+ {n:{en:"Private lesson",fr:"Cours privé",id:"Les privat"},d:{en:"One coach just for you. The fastest way to stand up.",fr:"Un coach rien que pour vous. Le plus rapide pour se lever.",id:"Satu pelatih khusus untuk Anda. Cara tercepat untuk berdiri."},p:300000},
+ {n:{en:"Kids lesson (up to 7 years)",fr:"Cours enfants (jusqu'à 7 ans)",id:"Les anak (sampai 7 tahun)"},d:{en:"Gentle, playful and close to the shore.",fr:"Doux, ludique et près du bord.",id:"Lembut, seru dan dekat pantai."},p:300000}
+];
+var RV=[
+ {n:"Made, Australia",t:{en:"Stood up on my first wave! Coach was patient and fun.",fr:"Debout dès la première vague ! Coach patient et sympa.",id:"Langsung berdiri di ombak pertama! Pelatih sabar dan seru."}},
+ {n:"Camille, France",t:{en:"Great small group, safe and well organised.",fr:"Petit groupe génial, sûr et bien organisé.",id:"Grup kecil yang bagus, aman dan rapi."}},
+ {n:"Andi, Jakarta",t:{en:"Fair price, good boards, easy booking.",fr:"Prix correct, bonnes planches, réservation facile.",id:"Harga wajar, papan bagus, pesan mudah."}}
+];
+var T={
+en:{h1:"Catch your first wave in Legian.",sub:"Surf lessons in small groups with local coaches. Check availability, then pay at the beach.",f1:"Board and rash guard included",f2:"Max 2 students per coach",f3:"Free cancel up to 24 hours before",lbl:"Lesson type",date:"Date",time:"Start time",ppl:"People",name:"Your name",phone:"Phone / WhatsApp",total:"Total",payNote:"Pay at the beach. Nothing to pay online.",submit:"Check availability",eName:"Enter your name.",ePhone:"Enter your phone number.",doneH:"Request received",doneP:"We will confirm availability on WhatsApp. Tap below to send your request now.",wa:"Confirm on WhatsApp",again:"Change request",msg:"Hello! Is this lesson available?",rateTxt:"Google reviews",gAll:"Read all reviews on Google",galH:"On the water",lessH:"Surf lessons",per:"per person",foot:"Meet at the beach hut on Legian Beach.",mapBtn:"Open in Google Maps"},
+fr:{h1:"Attrapez votre première vague à Legian.",sub:"Cours de surf en petit groupe avec des coachs locaux. Vérifiez la disponibilité, puis payez sur la plage.",f1:"Planche et lycra inclus",f2:"2 élèves maximum par coach",f3:"Annulation gratuite jusqu'à 24 h avant",lbl:"Type de cours",date:"Date",time:"Heure de début",ppl:"Personnes",name:"Votre nom",phone:"Téléphone / WhatsApp",total:"Total",payNote:"Paiement sur la plage. Rien à payer en ligne.",submit:"Vérifier la disponibilité",eName:"Entrez votre nom.",ePhone:"Entrez votre numéro.",doneH:"Demande reçue",doneP:"Nous confirmons la disponibilité sur WhatsApp. Touchez ci-dessous pour envoyer votre demande.",wa:"Confirmer sur WhatsApp",again:"Modifier la demande",msg:"Bonjour ! Ce cours est-il disponible ?",rateTxt:"Avis Google",gAll:"Lire tous les avis sur Google",galH:"Sur l'eau",lessH:"Cours de surf",per:"par personne",foot:"Rendez-vous à la paillote sur la plage de Legian.",mapBtn:"Ouvrir dans Google Maps"},
+id:{h1:"Tangkap ombak pertamamu di Legian.",sub:"Les selancar grup kecil dengan pelatih lokal. Cek ketersediaan, lalu bayar di pantai.",f1:"Papan dan rashguard termasuk",f2:"Maks. 2 murid per pelatih",f3:"Batal gratis hingga 24 jam sebelumnya",lbl:"Jenis les",date:"Tanggal",time:"Jam mulai",ppl:"Jumlah orang",name:"Nama Anda",phone:"Telepon / WhatsApp",total:"Total",payNote:"Bayar di pantai. Tidak ada pembayaran online.",submit:"Cek ketersediaan",eName:"Isi nama Anda.",ePhone:"Isi nomor telepon.",doneH:"Permintaan diterima",doneP:"Kami konfirmasi ketersediaan lewat WhatsApp. Ketuk di bawah untuk mengirim permintaan sekarang.",wa:"Konfirmasi via WhatsApp",again:"Ubah permintaan",msg:"Halo! Apakah les ini masih tersedia?",rateTxt:"Ulasan Google",gAll:"Baca semua ulasan di Google",galH:"Di atas air",lessH:"Les selancar",per:"per orang",foot:"Bertemu di pondok pantai Legian.",mapBtn:"Buka di Google Maps"}
+};
+var L=(navigator.language||"en").slice(0,2);if(!T[L])L="en";
+try{L=localStorage.getItem("lang")||L}catch(e){}
+var $=function(i){return document.getElementById(i)};
+var idr=function(n){return "Rp "+n.toLocaleString("id-ID")};
+
+function render(){
+ var t=T[L];document.documentElement.lang=L;
+ document.querySelectorAll("[data-t]").forEach(function(e){e.textContent=t[e.dataset.t]});
+ document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.l===L)});
+ var v=$("item").value||0,s=$("item");s.innerHTML="";
+ LES.forEach(function(x,i){var o=document.createElement("option");o.value=i;o.textContent=x.n[L]+" – "+idr(x.p);s.appendChild(o)});s.value=v;
+ var tv=$("time").value,ts=$("time");ts.innerHTML="";
+ S.times.split(",").forEach(function(x){x=x.trim();if(x){var o=document.createElement("option");o.textContent=x;ts.appendChild(o)}});if(tv)ts.value=tv;
+ $("gL").innerHTML=LES.map(function(x){return '<div class="item"><h3>'+x.n[L]+'</h3><p>'+x.d[L]+'</p><span class="price">'+idr(x.p)+" "+t.per+"</span></div>"}).join("");
+ $("revs").innerHTML=RV.map(function(r){return '<div class="rev"><div class="stars" aria-hidden="true">★★★★★</div><p>'+(typeof r.t==="string"?r.t:r.t[L])+"</p><small>"+r.n+"</small></div>"}).join("");
+ $("ratingNum").textContent=S.rating;
+ $("gLink").href=S.maps;$("mapLink").href=S.maps;
+ $("notice").hidden=!S.notice;$("notice").textContent=S.notice;
+ calc();
+}
+function calc(){var n=LES[$("item").value||0].p*Math.max(1,+$("qty").value||1);$("total").textContent=idr(n);return n}
+document.querySelectorAll(".lang button").forEach(function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem("lang",L)}catch(e){}render()}});
+["item","qty"].forEach(function(i){$(i).addEventListener("input",calc)});
+var tm=new Date();tm.setDate(tm.getDate()+1);$("date").min=new Date().toISOString().slice(0,10);$("date").value=tm.toISOString().slice(0,10);
+
+$("submit").onclick=function(){
+ var t=T[L],name=$("name").value.trim(),ph=$("phone").value.trim();
+ if(!name){$("err").textContent=t.eName;$("name").focus();return}
+ if(!ph){$("err").textContent=t.ePhone;$("phone").focus();return}
+ $("err").textContent="";
+ var it=LES[$("item").value],total=calc();
+ var b={name:name,phone:ph,item:it.n.en,date:$("date").value,time:$("time").value,qty:+$("qty").value,total:total,lang:L};
+ if(CFG.SHEET_URL){try{fetch(CFG.SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(b)})}catch(e){}}
+ var rows=[[t.name,name],[t.lbl,it.n[L]],[t.date,b.date+" "+b.time],[t.ppl,b.qty],[t.total,idr(total)]];
+ $("sum").innerHTML="";rows.forEach(function(r){var a=document.createElement("dt"),c=document.createElement("dd");a.textContent=r[0];c.textContent=r[1];$("sum").append(a,c)});
+ $("wa").href="https://wa.me/"+S.wa+"?text="+encodeURIComponent(t.msg+"\n"+rows.map(function(r){return r[0]+": "+r[1]}).join("\n")+"\nTel: "+ph);
+ $("formView").hidden=true;$("doneView").style.display="block";
+};
+$("again").onclick=function(){$("doneView").style.display="none";$("formView").hidden=false};
+
+/* CMS: load content from the Google Sheet (falls back to the defaults above) */
+function loadCMS(){
+ if(!CFG.SHEET_URL)return;
+ fetch(CFG.SHEET_URL).then(function(r){return r.json()}).then(function(d){
+  var st=d.settings||{};
+  if(st.whatsapp)S.wa=st.whatsapp.replace(/\D/g,"");
+  ["maps_url:maps","rating:rating","notice:notice","times:times"].forEach(function(p){var k=p.split(":");if(st[k[0]]!==undefined&&st[k[0]]!=="")S[k[1]]=st[k[0]];if(k[0]==="notice")S.notice=st.notice||""});
+  var ls=(d.lessons||[]).filter(function(r){return String(r.active).toUpperCase()!=="FALSE"&&r.name_en&&+r.price>0});
+  if(ls.length)LES=ls.map(function(r){return{n:{en:r.name_en,fr:r.name_fr||r.name_en,id:r.name_id||r.name_en},d:{en:r.desc_en||"",fr:r.desc_fr||r.desc_en||"",id:r.desc_id||r.desc_en||""},p:+r.price}});
+  var rv=(d.reviews||[]).filter(function(r){return r.name&&r.text});
+  if(rv.length)RV=rv.map(function(r){return{n:r.name,t:String(r.text)}});
+  render();
+ }).catch(function(){});
+}
+render();loadCMS();
+</script>
+</body>
+</html>
